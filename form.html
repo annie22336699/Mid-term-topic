@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
+    <style>
+      .cp-form-area {
+        margin: 30px auto;
+      }
+      .cp-form-img {
+        display: flex;
+        /* align-items: center; */
+      }
+
+      .cp-form-img img {
+        width: 100%;
+        object-fit: cover;
+      }
+      .cpnamearea{
+        display: flex;
+        flex-wrap:nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container my-4 classic_product">
+        <div class="row">
+            <div class="title my-4">
+                <h2>經典產品</h2>
+            </div>
+        </div>
+    </div>
+    <!-- 主區 -->
+    <div class="container cp-form-area">
+      <div class="row">
+        <!-- 產品圖 -->
+        <div class="cp-form-img mb-3 col-lg-3 col-md-12">
+          <img src="./uploaded/flowers.jpg" alt="產品名稱" />
+        </div>
+        <div class="cpnamearea col-lg-9">
+          <!-- 名稱類別 -->
+          <div class="cp-form-np mb-3 col-lg-6 px-3">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label"
+                >產品名稱</label
+              >
+              <input type="text" class="form-control" placeholder="" />
+            </div>
+            <div class="mb-3">
+              <label for="exampleDataList" class="form-label">產品類別</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>請選擇類別</option>
+                <option value="1">壽司</option>
+                <option value="2">甜點</option>
+                <option value="3">禮盒</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 產品敘述 -->
+          <div class="cp-form-na mb-3 col-lg-6 px-3">
+            <label for="exampleFormControlTextarea1" class="form-label mb-3"
+              >產品敘述</label
+            >
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row col-lg-9 ms-md-auto">
+        <!-- 詳細 -->
+        <div class="container cp-form-area">
+          <div class="row">
+            <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
+              <label for="exampleFormControlInput1" class="form-label"
+                >單價</label
+              >
+              <input type="text" class="form-control" placeholder="" />
+            </div>
+
+            <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
+              <label for="exampleFormControlInput1" class="form-label"
+                >折數</label
+              >
+              <input type="text" class="form-control" placeholder="" />
+            </div>
+
+            <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
+              <label for="exampleFormControlInput1" class="form-label"
+                >印製時間</label
+              >
+              <input type="text" class="form-control" placeholder="" />
+            </div>
+
+            <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
+              <label for="exampleFormControlInput1" class="form-label"
+                >產品重量</label
+              >
+              <input type="text" class="form-control" placeholder="" />
+            </div>
+
+            <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
+              <label for="exampleFormControlInput1" class="form-label"
+                >產品卡路里</label
+              >
+              <input type="text" class="form-control" placeholder="" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 產品ID區 -->
+        <div class="container cp-form-area">
+          <div class="row">
+            <div class="mb-3 col-md-6 col-sm-12">
+              <label for="exampleFormControlInput1" class="form-label"
+                >使用食材ID</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="請用,分隔ID"
+              />
+            </div>
+
+            <div class="mb-3 col-md-6 col-sm-12">
+              <label for="exampleFormControlInput1" class="form-label"
+                >推薦產品ID</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="請用,分隔ID"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 圖片上傳 -->
+        <div class="container cp-form-area">
+          <div class="row">
+            <div class="mb-3 col-md-6 col-sm-12">
+              <label for="formFile" class="form-label"
+                >營養成分六角分析圖</label
+              >
+              <input class="form-control" type="file" id="formFile" />
+              <br />
+              <img src="#" id="cpn-img" />
+            </div>
+
+            <div class="mb-3 col-md-6 col-sm-12">
+              <label for="formFile" class="form-label">營養成分表圖</label>
+              <input class="form-control" type="file" id="formFile" />
+              <br />
+              <img src="#" id="cpn-table-img" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

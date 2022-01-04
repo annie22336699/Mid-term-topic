@@ -60,7 +60,6 @@ $rows = $pdo->query($sql)->fetchAll();
                     <li class="page-item <?= 1==$page ? 'disabled' : '' ?>">
                         <a class="page-link" href="?page=<?= $page-1 ?>"><i class="fas fa-arrow-left"></i></a>
                     </li>
-
                     
                     <?php for($i=$page-2;$i<=$page+2;$i++) if($i>=1 && $i<=$tatlepage): ; ?>
                     <li class="page-item <?= $i==$page ? 'active' : '' ?>"><a class="page-link" href="?page=<?=$i ?>"><?=$i ?></a></li>
@@ -77,14 +76,17 @@ $rows = $pdo->query($sql)->fetchAll();
         <?php foreach ($rows as $classic_product_card) : ?>
         <div class="card m-2" style="width: 18rem;">
             <div class="cpimg">
-                <img <?= ' src="'.$classic_product_card['c_product_img_path'].'"' ?> class="card-img-top" alt="">
+                <img <?= 'src="'.$classic_product_card['c_product_img_path'].'"' ?> class="card-img-top" alt="">
             </div>
             <div class="card-body card-inside">
                 <h5 class="card-title"><?= $classic_product_card['c_product_name'] ?></h5>
                 <div class="container card-inside mt-3">
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <!-- -- -->
                         <button type="button" class="btn btn-outline-primary" onclick="inqtyMi(event)"><i class="fas fa-minus"></i></button>
+                        <!-- 數量 -->
                         <input type="text" class="form-control qty" value="1" onkeypress="return isNumberKey(event)"></input>
+                        <!-- ++ -->
                         <button type="button" class="btn btn-outline-primary" onclick="inqtyPl(event)"><i class="fas fa-plus"></i></button>
                     </div>
 
@@ -101,23 +103,26 @@ $rows = $pdo->query($sql)->fetchAll();
 <?php include __DIR__ . '/Reception_part/__scripts.php' ?>
 <script>
 
-
-function inqtyPl(event){
+    // 數量++
+    function inqtyPl(event){
     // console.log(event.currentTarget);
     const qty=event.currentTarget.parentNode.querySelector('.qty').value;
     // console.log(qty);
     event.currentTarget.parentNode.querySelector('.qty').value=+ qty+1;
-};
-function inqtyMi(event){
+    };
+
+    // 數量--
+    function inqtyMi(event){
     const qty=event.currentTarget.parentNode.querySelector('.qty').value;
     if(qty>0){
         event.currentTarget.parentNode.querySelector('.qty').value=+ qty-1;
     }
-};
+    };
 
-function isNumberKey(event){
+    // 輸入數量判斷正確性
+    function isNumberKey(event){
     const charCode= event.which;
     return !(charCode>31 && (charCode<48 || charCode>57));
-}
+    }
 </script>
 <?php include __DIR__ . '/Reception_part/__html_foot.php' ?>
