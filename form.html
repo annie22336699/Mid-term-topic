@@ -10,44 +10,60 @@
       .cp-form-area {
         margin: 30px auto;
       }
-      .cp-form-img {
+      /* .cp-form-img {
         display: flex;
-        /* align-items: center; */
-      }
-
-      .cp-form-img img {
+        align-items: center;
+      } */
+      .cp-form-area img {
         width: 100%;
         object-fit: cover;
       }
-      .cpnamearea{
+      .upper{
         display: flex;
-        flex-wrap:nowrap;
+        justify-content: space-between;
+        margin: 25px 0px 10px;
+        align-items: baseline;
+        align-content: center;
+      }
+      .save{
+        display: flex;
+        justify-content: flex-end;
+      }
+      .save button{
+        margin: 0px 5px;
+      }
+      .form-text{
+        color: red;
       }
     </style>
   </head>
   <body>
     <div class="container my-4 classic_product">
-        <div class="row">
-            <div class="title my-4">
-                <h2>經典產品</h2>
-            </div>
+      <div class="row">
+        <div class="title my-4 upper">
+          <h2>經典產品</h2>
         </div>
+      </div>
     </div>
     <!-- 主區 -->
     <div class="container cp-form-area">
-      <div class="row">
+      <div class="row flex-lg-nowrap">
         <!-- 產品圖 -->
-        <div class="cp-form-img mb-3 col-lg-3 col-md-12">
-          <img src="./uploaded/flowers.jpg" alt="產品名稱" />
+        <div class="cp-form-img mb-3 col-sm-12 col-lg-3 flex-lg-wrap">
+          <img class="mb-3" src="./uploaded/flowers.jpg" id="cpn-img" />  
+          <label for="formFile" class="form-label" >產品圖片</label>
+          <input class="form-control" type="file" id="formFile" />
         </div>
-        <div class="cpnamearea col-lg-9">
+
+        <div class="row flex-md-nowrap flex-sm-wrap col-sm-12 col-md-6 col-lg-4 ">
           <!-- 名稱類別 -->
-          <div class="cp-form-np mb-3 col-lg-6 px-3">
+          <div class="cp-form-np mb-3 ">
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label"
                 >產品名稱</label
               >
               <input type="text" class="form-control" placeholder="" />
+              <div class="form-text"></div>
             </div>
             <div class="mb-3">
               <label for="exampleDataList" class="form-label">產品類別</label>
@@ -57,15 +73,17 @@
                 <option value="2">甜點</option>
                 <option value="3">禮盒</option>
               </select>
+              <div class="form-text"></div>
             </div>
           </div>
 
           <!-- 產品敘述 -->
-          <div class="cp-form-na mb-3 col-lg-6 px-3">
+          <div class="cp-form-na mb-3">
             <label for="exampleFormControlTextarea1" class="form-label mb-3"
               >產品敘述</label
             >
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+            <div class="form-text"></div>
           </div>
         </div>
       </div>
@@ -81,6 +99,7 @@
                 >單價</label
               >
               <input type="text" class="form-control" placeholder="" />
+              <div class="form-text"></div>
             </div>
 
             <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
@@ -88,6 +107,7 @@
                 >折數</label
               >
               <input type="text" class="form-control" placeholder="" />
+              <div class="form-text"></div>
             </div>
 
             <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
@@ -95,6 +115,7 @@
                 >印製時間</label
               >
               <input type="text" class="form-control" placeholder="" />
+              <div class="form-text"></div>
             </div>
 
             <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
@@ -102,6 +123,7 @@
                 >產品重量</label
               >
               <input type="text" class="form-control" placeholder="" />
+              <div class="form-text"></div>
             </div>
 
             <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
@@ -159,6 +181,12 @@
               <img src="#" id="cpn-table-img" />
             </div>
           </div>
+        </div>
+
+        <!-- 保存取消 -->
+        <div class="save my-4">
+          <a href="#"><button type="button" class="btn btn-dark">取消</button></a>
+          <button type="submit" class="btn btn-dark">保存</button>
         </div>
       </div>
     </div>

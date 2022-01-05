@@ -1,5 +1,5 @@
 <?php 
-require __DIR__.'/parts/__connect_db.php';
+require __DIR__.'./parts/__connect_db.php';
 $title = '經典產品修改頁';
 $pageName = 'classic_product_edit';
 ?>

@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . '/Reception_part/__connect_db.php';
-$pageName = 'Reception_index';
+require __DIR__ . '/parts/__connect_db.php';
+$pageName = 'user_index';
 
 
 $sqlcount = "SELECT COUNT(1) FROM classic_product";
@@ -11,13 +11,13 @@ $tatlepage = ceil($totalrows / $pagenation);
 
 $page= isset($_GET['page']) ? intval($_GET['page']):1;
 if($page < 1){
-    header('Location: Reception_classic_product.php');
+    header('Location: user_classic_product.php');
     exit;
 }
 
 $sql = sprintf("SELECT * FROM classic_product LIMIT %s,%s" , ($page-1)*$pagenation, $pagenation);
 if($page > $tatlepage){
-    header('Location: Reception_classic_product.php?page='. $tatlepage);
+    header('Location: user_classic_product.php?page='. $tatlepage);
     exit;
 }
 
@@ -26,7 +26,7 @@ $rows = $pdo->query($sql)->fetchAll();
 
 ?>
 
-<?php include __DIR__ . '/Reception_part/__html_head.php' ?>
+<?php include __DIR__ . '/parts/__html_head.php' ?>
 <style>
 .classic_product .card-inside{
     display: flex;
@@ -48,7 +48,7 @@ $rows = $pdo->query($sql)->fetchAll();
 }
 </style>
 
-<?php include __DIR__ . '/Reception_part/__navbar.php' ?>
+<?php include __DIR__ . '/parts/__navbar.php' ?>
 <div class="container my-4 classic_product">
     <div class="row">
         <div class="title my-4">
@@ -100,7 +100,7 @@ $rows = $pdo->query($sql)->fetchAll();
     </div>
 </div>
 
-<?php include __DIR__ . '/Reception_part/__scripts.php' ?>
+<?php include __DIR__ . '/parts/__scripts.php' ?>
 <script>
 
     // 數量++
@@ -125,4 +125,4 @@ $rows = $pdo->query($sql)->fetchAll();
     return !(charCode>31 && (charCode<48 || charCode>57));
     }
 </script>
-<?php include __DIR__ . '/Reception_part/__html_foot.php' ?>
+<?php include __DIR__ . '/parts/__html_foot.php' ?>

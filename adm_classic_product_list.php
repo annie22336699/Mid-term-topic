@@ -26,7 +26,7 @@ $rows = $pdo->query($sql)->fetchAll();
 
 ?>
 
-<?php include __DIR__ . '/parts/__html_head.php' ?>
+<?php include __DIR__ . './parts/__html_head.php' ?>
 <style>
     .cmsCpimg {
         width: 70px;
@@ -67,7 +67,7 @@ $rows = $pdo->query($sql)->fetchAll();
                     </ul>
                 </nav>
 
-                <button type="button" class="btn btn-primary">新增產品</button>
+                <a href="./adm_classic_product_insert.php"><button type="button" class="btn btn-dark">新增產品</button></a>
             </div>
 
             <table class="table table-hover table-light">
@@ -86,7 +86,7 @@ $rows = $pdo->query($sql)->fetchAll();
                 <tbody>
                     <?php foreach ($rows as $classic_product) : ?>
                         <tr>
-                            <td><img <?= 'src="' . $classic_product['c_product_img_path'] . '"' ?> alt="" class="cmsCpimg"> </td>
+                            <td><img <?= 'src="'.$classic_product['c_product_img_path'].'"' ?> alt="" class="cmsCpimg <?= $classic_product['c_product_name'] ?>"> </td>
                             <td class="del_name"><?= $classic_product['c_product_name'] ?></td>
                             <td><?= $classic_product['c_product_value'] ?></td>
                             <td><?= $classic_product['c_product_category'] ?></td>
@@ -108,11 +108,23 @@ $rows = $pdo->query($sql)->fetchAll();
 
 <?php include __DIR__ . '/parts/__scripts.php' ?>
 <script>
-    function delete_data(id) {
+    function delete_data(c_product_id) {
         // 待修改ID為產品名稱
-        if(confirm(`請問確認需要刪除${id}此筆資料嗎？`)){
-            location.href=`./api/adm_classic_product_delete_api.php?sid=${id}`;
+        if(confirm(`請問確認需要刪除${c_product_id}此筆資料嗎？`)){
+            location.href=`./adm_classic_product_delete_api.php?c_product_id=${c_product_id}`;
         }
+    }
+
+    // 類別轉換文字??
+    switch($c_product_category){
+        case '壽司':
+            $_POST['c_product_category']='sh';
+            break;
+        case '甜點':
+            $_POST['c_product_category']='dz';
+            break;
+        default:
+            $_POST['c_product_category']='bx';
     }
 </script>
 <?php include __DIR__ . '/parts/__html_foot.php' ?>
