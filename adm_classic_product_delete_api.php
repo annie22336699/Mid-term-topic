@@ -6,6 +6,10 @@ if(! isset($_GET['c_product_id'])){
     exit;
 };
 
+// if(isset($_GET['c_product_name'])){
+//     $c_product_name=json_encode($_GET['c_product_name']);
+//     $pdo->query("SELECT * FROM `classic_product` WHERE `c_product_name`=$c_product_name");
+// };
 if(isset($_GET['c_product_id'])){
     $c_product_id=intval($_GET['c_product_id']);
     $pdo->query("DELETE FROM `classic_product` WHERE c_product_id=$c_product_id");

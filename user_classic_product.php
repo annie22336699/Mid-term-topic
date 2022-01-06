@@ -48,7 +48,7 @@ $rows = $pdo->query($sql)->fetchAll();
 }
 </style>
 
-<?php include __DIR__ . '/parts/__navbar.php' ?>
+<?php include __DIR__ . '/parts/__navbar__user.php' ?>
 <div class="container my-4 classic_product">
     <div class="row">
         <div class="title my-4">
@@ -85,7 +85,7 @@ $rows = $pdo->query($sql)->fetchAll();
                         <!-- -- -->
                         <button type="button" class="btn btn-outline-primary" onclick="inqtyMi(event)"><i class="fas fa-minus"></i></button>
                         <!-- 數量 -->
-                        <input type="text" class="form-control qty" value="1" onkeypress="return isNumberKey(event)"></input>
+                        <input type="text" class="form-control qty" value="1" oninput = "value=value.replace(/[^\d]/g,'')"></input>
                         <!-- ++ -->
                         <button type="button" class="btn btn-outline-primary" onclick="inqtyPl(event)"><i class="fas fa-plus"></i></button>
                     </div>
@@ -118,11 +118,5 @@ $rows = $pdo->query($sql)->fetchAll();
         event.currentTarget.parentNode.querySelector('.qty').value=+ qty-1;
     }
     };
-
-    // 輸入數量判斷正確性
-    function isNumberKey(event){
-    const charCode= event.which;
-    return !(charCode>31 && (charCode<48 || charCode>57));
-    }
 </script>
 <?php include __DIR__ . '/parts/__html_foot.php' ?>

@@ -45,15 +45,15 @@ $pageName = 'classic_product_insert';
       </div>
     </div>
     <!-- 主區 -->
-  <form name="forminsert" onsubmit="sendData(); return false;">
+  <form name="formDataAdd" onsubmit="sendData(); return false;">
       <div class="container cp-form-area">
         <div class="row flex-lg-nowrap">
           <!-- 產品圖 -->
           <div class="cp-form-img mb-3 col-sm-12 col-lg-3 flex-lg-wrap">
             <img class="mb-3" src="" id="cpnDimg" />  
-            <label for="formFile" class="form-label" >產品圖片</label>
-            <div name="uploading" runat="server">
-              <input class="form-control" accept="image/*" type="file" id="uplimg" name="cp-pd-img"/>
+            <label for="c_product_img_path" class="form-label" >產品圖片</label>
+            <div name="c_product_img_path" runat="server">
+              <input class="form-control" accept="image/*" type="file" id="uplimg" name="cpPdImg"/>
             </div>
           </div>
   
@@ -61,15 +61,13 @@ $pageName = 'classic_product_insert';
             <!-- 名稱類別 -->
             <div class="cp-form-np mb-3 ">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >產品名稱</label
-                >
-                <input type="text" class="form-control" placeholder="" name="c_product_name"/>
+                <label for="c_product_name" class="form-label">產品名稱</label>
+                <input type="text" class="form-control" placeholder="" id="c_product_name" name="c_product_name" required/>
                 <div class="form-text"></div>
               </div>
               <div class="mb-3">
-                <label for="exampleDataList" class="form-label">產品類別</label>
-                <select class="form-select" aria-label="Default select example" name="c_product_category">
+                <label for="c_product_category" class="form-label">產品類別</label>
+                <select class="form-select" aria-label="Default select example" id="c_product_category" name="c_product_category">
                   <option selected>請選擇類別</option>
                   <option value="sh">壽司</option>
                   <option value="dz">甜點</option>
@@ -81,10 +79,8 @@ $pageName = 'classic_product_insert';
   
             <!-- 產品敘述 -->
             <div class="cp-form-na mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label mb-3"
-                >產品敘述</label
-              >
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="c_product_description"></textarea>
+              <label for="c_product_description" class="form-label mb-3">產品敘述</label>
+              <textarea class="form-control" id="c_product_description" rows="4" id="c_product_description" name="c_product_description"></textarea>
               <div class="form-text"></div>
             </div>
           </div>
@@ -97,32 +93,32 @@ $pageName = 'classic_product_insert';
           <div class="container cp-form-area">
             <div class="row">
               <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
-                <label for="exampleFormControlInput1" class="form-label">單價</label>
-                <input type="text" class="form-control" placeholder="" name="c_product_value"/>
+                <label for="c_product_value" class="form-label">單價</label>
+                <input type="text" class="form-control" placeholder="" id="c_product_value" name="c_product_value" oninput = "value=value.replace(/[^\d]/g,'')"/>
                 <div class="form-text"></div>
               </div>
   
               <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
-                <label for="exampleFormControlInput1" class="form-label">折數</label>
-                <input type="text" class="form-control" placeholder="" name="c_product_discount"/>
+                <label for="c_product_discount" class="form-label">折數</label>
+                <input type="text" class="form-control" placeholder="" id="c_product_discount" name="c_product_discount" oninput = "value=value.replace(/[^\d]/g,'')"/>
                 <div class="form-text"></div>
               </div>
   
               <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
-                <label for="exampleFormControlInput1" class="form-label">印製時間</label>
-                <input type="text" class="form-control" placeholder="" name="c_product_print_time"/>
+                <label for="c_product_print_time" class="form-label">印製時間</label>
+                <input type="text" class="form-control" placeholder="" id="c_product_print_time" name="c_product_print_time" oninput = "value=value.replace(/[^\d]/g,'')"/>
                 <div class="form-text"></div>
               </div>
   
               <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
-                <label for="exampleFormControlInput1" class="form-label">產品重量</label>
-                <input type="text" class="form-control" placeholder="" name="c_product_weight"/>
+                <label for="c_product_weight" class="form-label">產品重量</label>
+                <input type="text" class="form-control" placeholder="" id="c_product_weight" name="c_product_weight" oninput = "value=value.replace(/[^\d]/g,'')"/>
                 <div class="form-text"></div>
               </div>
   
               <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
-                <label for="exampleFormControlInput1" class="form-label">產品卡路里</label>
-                <input type="text" class="form-control" placeholder="" name="c_product_calories"/>
+                <label for="c_product_calories" class="form-label">產品卡路里</label>
+                <input type="text" class="form-control" placeholder="" id="c_product_calories" name="c_product_calories" oninput = "value=value.replace(/[^\d]/g,'')"/>
                 <div class="form-text"></div>
               </div>
             </div>
@@ -132,25 +128,13 @@ $pageName = 'classic_product_insert';
           <div class="container cp-form-area">
             <div class="row">
               <div class="mb-3 col-md-6 col-sm-12">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >使用食材ID</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="請用,分隔ID"
-                />
-              </div>
+                <label for="c_product_materials_id" class="form-label">使用食材ID</label>
+                <input type="text" class="form-control" placeholder="請用,分隔ID" id="c_product_materials_id" name="c_product_materials_id"/>
+              </div>              
   
               <div class="mb-3 col-md-6 col-sm-12">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >推薦產品ID</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="請用,分隔ID"
-                />
+                <label for="c_product_recommend_pids" class="form-label">推薦產品ID</label>
+                <input type="text" class="form-control" placeholder="請用,分隔ID" id="c_product_recommend_pids" name="c_product_recommend_pids"/>
               </div>
             </div>
           </div>
@@ -159,17 +143,15 @@ $pageName = 'classic_product_insert';
           <div class="container cp-form-area">
             <div class="row">
               <div class="mb-3 col-md-6 col-sm-12" runat="server">
-                <label for="formFile" class="form-label"
-                  >營養成分六角分析圖</label
-                >
-                <input class="form-control" accept="image/*" type="file" id="formFile1" />
+                <label for="c_product_nutrition_img_path" class="form-label" >營養成分六角分析圖</label>
+                <input class="form-control" accept="image/*"  type="file" id="cpNuImg" name="cpNuImg"/>
                 <br />
                 <img src="" id="cpnImg" />
               </div>
   
               <div class="mb-3 col-md-6 col-sm-12" runat="server">
-                <label for="formFile" class="form-label">營養成分表圖</label>
-                <input class="form-control" type="file" accept="image/*" id="formFile2" />
+                <label for="c_product_nutrition_table_path" class="form-label">營養成分表圖</label>
+                <input class="form-control" type="file" accept="image/*" id="cpNuTaImg" name="cpNuTaImg"/>
                 <br />
                 <img src="" id="cpntableImg" />
               </div>
@@ -179,7 +161,7 @@ $pageName = 'classic_product_insert';
       </div>
   
       <div class="save my-4">
-        <a href="./adm_classic_product_list.php"><button type="button" class="btn btn-dark">取消</button></a>
+        <a href="<?= $come_from ?>"><button type="button" class="btn btn-dark">取消</button></a>
         <button type="submit" class="btn btn-dark">新增</button>
       </div>
   </form>
@@ -195,15 +177,15 @@ $pageName = 'classic_product_insert';
     }
   }
 // 六角分析圖預覽
-  formFile1.onchange=e=>{
-    const [file]=formFile1.files;
+  cpNuImg.onchange=e=>{
+    const [file]=cpNuImg.files;
     if(file){
       cpnImg.src=URL.createObjectURL(file);
     }
   }
 // 營養成分表圖預覽
-  formFile2.onchange=e=>{
-    const [file]=formFile2.files;
+  cpNuTaImg.onchange=e=>{
+    const [file]=cpNuTaImg.files;
     if(file){
       cpntableImg.src=URL.createObjectURL(file);
     }
@@ -220,6 +202,7 @@ $pageName = 'classic_product_insert';
   const c_product_weight=document.querySelector('#c_product_weight');
   const c_product_calories=document.querySelector('#c_product_calories');
 
+  const value_rule= /^\d{9}$/ ;
 
   function sendData(){
     c_product_name.nextElementSibling.innerHTML='';
@@ -239,11 +222,31 @@ $pageName = 'classic_product_insert';
     }
     if(c_product_category.value==='請選擇類別'){
       isPass=false;
-      name.nextElementSibling.innerHTML='請選擇類別';
+      c_product_category.nextElementSibling.innerHTML='請選擇產品類別';
+    }
+    if(c_product_description.value.length<2){
+      isPass=false;
+      c_product_description.nextElementSibling.innerHTML='請輸入產品敘述';
+    }
+    if(!c_product_value.value && !value_rule.test(c_product_value.value)){
+      isPass=false;
+      c_product_value.nextElementSibling.innerHTML='請填寫金額';
+    }
+    if(c_product_discount.value>100){
+      isPass=false;
+      c_product_discount.nextElementSibling.innerHTML='請輸入正確折數';
+    }
+    if(!c_product_print_time.value && !value_rule.test(c_product_print_time.value)){
+      isPass=false;
+      c_product_print_time.nextElementSibling.innerHTML='請輸入印製時間';
+    }
+    if(!c_product_weight.value && !value_rule.test(c_product_weight.value)){
+      isPass=false;
+      c_product_weight.nextElementSibling.innerHTML='請輸入產品重量';
     }
 
     if(isPass){
-      const fd = new FormData(document.forminsert);
+      const fd = new FormData(document.formDataAdd);
 
       fetch('./adm_classic_product_insert_api.php',{
         method:'POST',
@@ -255,7 +258,7 @@ $pageName = 'classic_product_insert';
           alert('新增成功');
           location.href='./adm_classic_product_list.php'
         }else{
-          alert(obj.error||'你輸入錯惹QQ');
+          alert(obj.error||'新增資料錯誤');
         }
       });
     }

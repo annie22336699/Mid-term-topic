@@ -24,6 +24,12 @@ if ($page > $tatlepage) {
 
 $rows = $pdo->query($sql)->fetchAll();
 
+$changeCategory=[
+    'sh'=>'壽司',
+    'dz'=>'甜點',
+    'bx'=>'禮盒',
+];
+
 ?>
 
 <?php include __DIR__ . './parts/__html_head.php' ?>
@@ -86,15 +92,15 @@ $rows = $pdo->query($sql)->fetchAll();
                 <tbody>
                     <?php foreach ($rows as $classic_product) : ?>
                         <tr>
-                            <td><img <?= 'src="'.$classic_product['c_product_img_path'].'"' ?> alt="" class="cmsCpimg <?= $classic_product['c_product_name'] ?>"> </td>
+                            <td><img <?= 'src="./uploaded/img_classic_product/c_product_img_path/'.$classic_product['c_product_img_path'].'"' ?> alt="" class="cmsCpimg <?= $classic_product['c_product_name'] ?>"> </td>
                             <td class="del_name"><?= $classic_product['c_product_name'] ?></td>
                             <td><?= $classic_product['c_product_value'] ?></td>
-                            <td><?= $classic_product['c_product_category'] ?></td>
+                            <td><?= $changeCategory[$classic_product['c_product_category']] ?></td>
                             <td><?= $classic_product['c_product_print_time'] ?></td>
 
                             <td><?= $classic_product['c_product_description'] ?></td>
                             <td>
-                                <a href="javascript: delete_data(<?= $classic_product['c_product_id'] ?>)"><i class="far fa-trash-alt"></i></a>
+                                <a href="javascript: delete_data(<?= "'".$classic_product['c_product_name'] ."'" ?>,<?= $classic_product['c_product_id'] ?>)"><i class="far fa-trash-alt"></i></a>
                             </td>
                             <td><a href="adm_classic_product_edit.php?sid=<?= $classic_product['c_product_id'] ?>"><i class="far fa-edit"></i></a></td>
                         </tr>
@@ -108,23 +114,11 @@ $rows = $pdo->query($sql)->fetchAll();
 
 <?php include __DIR__ . '/parts/__scripts.php' ?>
 <script>
-    function delete_data(c_product_id) {
+    function delete_data(c_product_name,c_product_id) {
         // 待修改ID為產品名稱
-        if(confirm(`請問確認需要刪除${c_product_id}此筆資料嗎？`)){
+        if(confirm(`請問確認需要刪除產品「${c_product_name}」嗎？`)){
             location.href=`./adm_classic_product_delete_api.php?c_product_id=${c_product_id}`;
         }
-    }
-
-    // 類別轉換文字??
-    switch($c_product_category){
-        case '壽司':
-            $_POST['c_product_category']='sh';
-            break;
-        case '甜點':
-            $_POST['c_product_category']='dz';
-            break;
-        default:
-            $_POST['c_product_category']='bx';
     }
 </script>
 <?php include __DIR__ . '/parts/__html_foot.php' ?>
