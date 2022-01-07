@@ -161,7 +161,7 @@ $pageName = 'classic_product_insert';
       </div>
   
       <div class="save my-4">
-        <a href="<?= $come_from ?>"><button type="button" class="btn btn-dark">取消</button></a>
+      <a href="<?= $_SERVER['HTTP_REFERER']??'list.php'; ?>"><button type="button" class="btn btn-dark">取消</button></a>
         <button type="submit" class="btn btn-dark">新增</button>
       </div>
   </form>

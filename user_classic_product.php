@@ -1,12 +1,12 @@
 <?php
 require __DIR__ . '/parts/__connect_db.php';
-$pageName = 'user_index';
+$pageName = 'user_classic_product';
 
 
 $sqlcount = "SELECT COUNT(1) FROM classic_product";
 $totalrows = $pdo->query($sqlcount)->fetch(PDO::FETCH_NUM)[0];
 
-$pagenation = 8;
+$pagenation = 6;
 $tatlepage = ceil($totalrows / $pagenation);
 
 $page= isset($_GET['page']) ? intval($_GET['page']):1;
@@ -76,7 +76,7 @@ $rows = $pdo->query($sql)->fetchAll();
         <?php foreach ($rows as $classic_product_card) : ?>
         <div class="card m-2" style="width: 18rem;">
             <div class="cpimg">
-                <img <?= 'src="'.$classic_product_card['c_product_img_path'].'"' ?> class="card-img-top" alt="">
+                <img <?= 'src="./uploaded/img_classic_product/c_product_img_path/'.$classic_product_card['c_product_img_path'].'"' ?> class="card-img-top" alt="">
             </div>
             <div class="card-body card-inside">
                 <h5 class="card-title"><?= $classic_product_card['c_product_name'] ?></h5>

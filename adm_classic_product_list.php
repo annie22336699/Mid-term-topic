@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/parts/__connect_db.php';
 $title = '經典產品';
-$pageName = 'adm_classic_product_list.php';
+$pageName = 'adm_classic_product_list';
 
 
 $sqlcount = "SELECT COUNT(1) FROM classic_product";
@@ -55,7 +55,9 @@ $changeCategory=[
 <div class="container">
     <div class="row">
         <div class="col">
-
+        <div class="title my-4">
+            <h2>經典產品</h2>
+        </div>
             <div class="upper">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
@@ -102,7 +104,7 @@ $changeCategory=[
                             <td>
                                 <a href="javascript: delete_data(<?= "'".$classic_product['c_product_name'] ."'" ?>,<?= $classic_product['c_product_id'] ?>)"><i class="far fa-trash-alt"></i></a>
                             </td>
-                            <td><a href="adm_classic_product_edit.php?sid=<?= $classic_product['c_product_id'] ?>"><i class="far fa-edit"></i></a></td>
+                            <td><a href="adm_classic_product_edit.php?c_product_id=<?= $classic_product['c_product_id'] ?>"><i class="far fa-edit"></i></a></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
