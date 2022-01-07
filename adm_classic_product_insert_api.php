@@ -20,13 +20,6 @@ $c_product_discount=$_POST['c_product_discount']??'';
         exit;
     };
 
-// 判斷有無折數??
-    // if(['c_product_discount']=='100'){
-    //     $_POST['c_product_is_special_sale']=false;
-    // }else{
-    //     $_POST['c_product_is_special_sale']=true;
-    // }
-
 // 判斷可讀取的副檔名
     $exts = [
         'image/jpeg' => '.jpg',
