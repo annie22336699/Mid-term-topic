@@ -9,10 +9,9 @@ $pageName = 'classic_product_insert';
       .cp-form-area {
         margin: 30px auto;
       }
-      /* .cp-form-img {
-        display: flex;
-        align-items: center;
-      } */
+      small{
+        color:red;
+      }
       .cp-form-area img {
         width: 100%;
         object-fit: cover;
@@ -43,6 +42,7 @@ $pageName = 'classic_product_insert';
       <div class="title my-4 upper">
         <h2>經典產品</h2>
       </div>
+      <p>有<small>*</small>的欄位為必填</p>
     </div>
     <!-- 主區 -->
   <form name="formDataAdd" onsubmit="sendData(); return false;">
@@ -61,12 +61,12 @@ $pageName = 'classic_product_insert';
             <!-- 名稱類別 -->
             <div class="cp-form-np mb-3 ">
               <div class="mb-3">
-                <label for="c_product_name" class="form-label">產品名稱</label>
+                <label for="c_product_name" class="form-label">產品名稱<small> *</small></label>
                 <input type="text" class="form-control" placeholder="" id="c_product_name" name="c_product_name" required/>
                 <div class="form-text"></div>
               </div>
               <div class="mb-3">
-                <label for="c_product_category" class="form-label">產品類別</label>
+                <label for="c_product_category" class="form-label">產品類別<small> *</small></label>
                 <select class="form-select" aria-label="Default select example" id="c_product_category" name="c_product_category">
                   <option selected>請選擇類別</option>
                   <option value="sh">壽司</option>
@@ -79,7 +79,7 @@ $pageName = 'classic_product_insert';
   
             <!-- 產品敘述 -->
             <div class="cp-form-na mb-3">
-              <label for="c_product_description" class="form-label mb-3">產品敘述</label>
+              <label for="c_product_description" class="form-label mb-3">產品敘述<small> *</small></label>
               <textarea class="form-control" id="c_product_description" rows="4" id="c_product_description" name="c_product_description"></textarea>
               <div class="form-text"></div>
             </div>
@@ -93,7 +93,7 @@ $pageName = 'classic_product_insert';
           <div class="container cp-form-area">
             <div class="row">
               <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
-                <label for="c_product_value" class="form-label">單價</label>
+                <label for="c_product_value" class="form-label">單價<small> *</small></label>
                 <input type="text" class="form-control" placeholder="" id="c_product_value" name="c_product_value" oninput = "value=value.replace(/[^\d]/g,'')"/>
                 <div class="form-text"></div>
               </div>
@@ -111,7 +111,7 @@ $pageName = 'classic_product_insert';
               </div>
   
               <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
-                <label for="c_product_weight" class="form-label">產品重量</label>
+                <label for="c_product_weight" class="form-label">產品重量<small> *</small></label>
                 <input type="text" class="form-control" placeholder="" id="c_product_weight" name="c_product_weight" oninput = "value=value.replace(/[^\d]/g,'')"/>
                 <div class="form-text"></div>
               </div>
@@ -210,9 +210,9 @@ $pageName = 'classic_product_insert';
     c_product_description.nextElementSibling.innerHTML='';
     c_product_value.nextElementSibling.innerHTML='';
     c_product_discount.nextElementSibling.innerHTML='';
-    c_product_print_time.nextElementSibling.innerHTML='';
+    // c_product_print_time.nextElementSibling.innerHTML='';
     c_product_weight.nextElementSibling.innerHTML='';
-    c_product_calories.nextElementSibling.innerHTML='';
+    // c_product_calories.nextElementSibling.innerHTML='';
 
     let isPass=true;
 
@@ -235,10 +235,6 @@ $pageName = 'classic_product_insert';
     if(c_product_discount.value>100){
       isPass=false;
       c_product_discount.nextElementSibling.innerHTML='請輸入正確折數';
-    }
-    if(!c_product_print_time.value && !value_rule.test(c_product_print_time.value)){
-      isPass=false;
-      c_product_print_time.nextElementSibling.innerHTML='請輸入印製時間';
     }
     if(!c_product_weight.value && !value_rule.test(c_product_weight.value)){
       isPass=false;

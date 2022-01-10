@@ -10,10 +10,9 @@
       .cp-form-area {
         margin: 30px auto;
       }
-      /* .cp-form-img {
-        display: flex;
-        align-items: center;
-      } */
+      small{
+        color:red;
+      }
       .cp-form-area img {
         width: 100%;
         object-fit: cover;
@@ -43,6 +42,7 @@
         <div class="title my-4 upper">
           <h2>經典產品</h2>
         </div>
+        <p>有<small>*</small>的欄位為必填</p>
       </div>
     </div>
     <!-- 主區 -->
@@ -60,13 +60,13 @@
           <div class="cp-form-np mb-3 ">
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label"
-                >產品名稱</label
+                >產品名稱<small>*</small></label
               >
               <input type="text" class="form-control" placeholder="" />
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="exampleDataList" class="form-label">產品類別</label>
+              <label for="exampleDataList" class="form-label">產品類別<small>*</small></label>
               <select class="form-select" aria-label="Default select example">
                 <option selected>請選擇類別</option>
                 <option value="1">壽司</option>
@@ -80,7 +80,7 @@
           <!-- 產品敘述 -->
           <div class="cp-form-na mb-3">
             <label for="exampleFormControlTextarea1" class="form-label mb-3"
-              >產品敘述</label
+              >產品敘述<small>*</small></label
             >
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
             <div class="form-text"></div>
@@ -96,7 +96,7 @@
           <div class="row">
             <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
               <label for="exampleFormControlInput1" class="form-label"
-                >單價</label
+                >單價<small>*</small></label
               >
               <input type="text" class="form-control" placeholder="" />
               <div class="form-text"></div>
@@ -120,7 +120,7 @@
 
             <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
               <label for="exampleFormControlInput1" class="form-label"
-                >產品重量</label
+                >產品重量<small>*</small></label
               >
               <input type="text" class="form-control" placeholder="" />
               <div class="form-text"></div>

@@ -94,7 +94,7 @@ $changeCategory=[
                 <tbody>
                     <?php foreach ($rows as $classic_product) : ?>
                         <tr>
-                            <td><img <?= 'src="./uploaded/img_classic_product/c_product_img_path/'.$classic_product['c_product_img_path'].'"' ?> alt="" class="cmsCpimg <?= $classic_product['c_product_name'] ?>"> </td>
+                            <td><img src="<?= ($classic_product['c_product_img_path']!=='')?'./uploaded/img_classic_product/c_product_img_path/'.$classic_product['c_product_img_path']:'' ?>" alt="" class="cmsCpimg <?= $classic_product['c_product_name'] ?>"> </td>
                             <td class="del_name"><?= $classic_product['c_product_name'] ?></td>
                             <td><?= $classic_product['c_product_value'] ?></td>
                             <td><?= $changeCategory[$classic_product['c_product_category']] ?></td>

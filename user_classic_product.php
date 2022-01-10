@@ -39,12 +39,15 @@ $rows = $pdo->query($sql)->fetchAll();
     margin: auto;
     padding: 20px;
     display: flex;
-    /* align-items: center; */
 }
 
 .cpimg img{
     width: 100%;
     object-fit: cover;
+}
+.cp-card h6{
+    color: #aaa;
+    text-align: end;
 }
 </style>
 
@@ -54,7 +57,7 @@ $rows = $pdo->query($sql)->fetchAll();
         <div class="title my-4">
             <h2>經典產品</h2>
         </div>
-
+        <!-- 分頁條 -->
         <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item <?= 1==$page ? 'disabled' : '' ?>">
@@ -72,25 +75,26 @@ $rows = $pdo->query($sql)->fetchAll();
                 </ul>
             </nav>
 
-
+        <!-- 產品卡片 -->
         <?php foreach ($rows as $classic_product_card) : ?>
-        <div class="card m-2" style="width: 18rem;">
+        <div class="card m-2 cp-card" style="width: 18rem;">
             <div class="cpimg">
                 <img <?= 'src="./uploaded/img_classic_product/c_product_img_path/'.$classic_product_card['c_product_img_path'].'"' ?> class="card-img-top" alt="">
             </div>
             <div class="card-body card-inside">
-                <h5 class="card-title"><?= $classic_product_card['c_product_name'] ?></h5>
+                <h5 class="card-title col-8"><?= $classic_product_card['c_product_name'] ?></h5><h6 class="col-4 "><?= $classic_product_card['c_product_value'] ?> 元</h6>
+                
                 <div class="container card-inside mt-3">
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
                         <!-- -- -->
                         <button type="button" class="btn btn-outline-primary" onclick="inqtyMi(event)"><i class="fas fa-minus"></i></button>
                         <!-- 數量 -->
-                        <input type="text" class="form-control qty" value="1" oninput = "value=value.replace(/[^\d]/g,'')"></input>
+                        <input type="text" class="form-control qty" value="1" oninput = "value=value.replace(/[^\d]/g,'')" style="text-align: center;"></input>
                         <!-- ++ -->
                         <button type="button" class="btn btn-outline-primary" onclick="inqtyPl(event)"><i class="fas fa-plus"></i></button>
                     </div>
 
-                    <a href="#" class="btn btn-primary my-3 ">加入購物車</a>
+                    <button class="btn btn-primary my-3" onclick="sendData(event)">加入購物車</button>
 
                 </div>
 
@@ -118,5 +122,45 @@ $rows = $pdo->query($sql)->fetchAll();
         event.currentTarget.parentNode.querySelector('.qty').value=+ qty-1;
     }
     };
+
+    // 加入購物車
+    function sendData(event) {
+
+        <?php
+        if (!isset($_SESSION['user'])) {
+            echo "alert('您尚未登入，請登入帳號');";
+            echo "window.location = './user_login.php';";
+        }
+        ?>
+        
+        let fd = new FormData(); 
+        let pid= event.currentTarget.parentNode.querySelector('.pid').innerHTML;
+        let amount = event.currentTarget.parentNode.querySelector('.qty').value;
+        let value = event.currentTarget.parentNode.querySelector('.value').innerHTML;
+        let category = event.currentTarget.parentNode.querySelector('.cat').innerHTML;
+                
+        if(amount == 0 || amount == ''){
+            console.log('數量不能為空或0');
+            return false;
+        }
+                
+        fd.append('pid', pid);
+        fd.append('amount', amount);
+        fd.append('value', value);
+        fd.append('category', category);
+              
+        fetch('user_orders_insert_api.php', {                
+            method: 'POST',            
+            body: fd,
+        }).then(r => r.json())
+        .then(obj => {
+            console.log('obj', obj); 
+            if (obj.success) {
+                alert('新增成功');
+            } else {
+                alert(obj.error || '資料新增發生錯誤');
+            }
+        })
+    }
 </script>
 <?php include __DIR__ . '/parts/__html_foot.php' ?>

@@ -92,7 +92,7 @@ $c_product_discount=$_POST['c_product_discount']??'';
 	    $row['c_product_nutrition_table_path'];
     };
 
-// 判斷有無折扣自動輸入值(資料庫用)
+// 判斷有無折扣自動輸入值
     if( $c_product_discount == 100){
         $c_product_is_special_sale=0;
     }else{
@@ -124,7 +124,7 @@ $stmt->execute([
     $c_product_category,
     $_POST['c_product_description']??'',
     $_POST['c_product_value']??'',
-    ($c_product_discount=='')? '100':$c_product_discount,
+    $c_product_discount,
     $_POST['c_product_print_time']??'',
     $_POST['c_product_weight']??'',
     $_POST['c_product_calories']??'',

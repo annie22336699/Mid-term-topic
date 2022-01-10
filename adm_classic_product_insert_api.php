@@ -38,6 +38,7 @@ $c_product_discount=$_POST['c_product_discount']??'';
     $upload_folderNuTa = __DIR__ . './uploaded/img_classic_product/c_product_nutrition_table_path/';
 
 // 產品圖檔上傳
+if($cpPdImg['size']!==0){
     $extcpPdImg=$exts[$cpPdImg['type']];  // 附檔名
     if(! empty($extcpPdImg)){
         $filenamePdImg=sha1($cpPdImg['name']. rand());
@@ -48,8 +49,9 @@ $c_product_discount=$_POST['c_product_discount']??'';
         }else{
             $output['error']='無法移動產品圖檔';
         }};
-
+    };
 // 營養成分六角分析圖上傳
+if($cpNuImg['size']!==0){
     $extcpNuImg=$exts[$cpNuImg['type']];  // 附檔名
     if(! empty($extcpNuImg)){
         $filenamecpNuImg=sha1($cpNuImg['name']. rand());
@@ -60,8 +62,9 @@ $c_product_discount=$_POST['c_product_discount']??'';
         }else{
             $output['error']='無法移動營養成分六角分析圖';
         }};
-
+    };
 // 營養成分表圖上傳
+if($cpNuTaImg['size']!==0){
     $extcpNuTaImg=$exts[$cpNuTaImg['type']];  // 附檔名
     if(! empty($extcpNuTaImg)){
         $filenamecpNuTaImg=sha1($cpNuTaImg['name']. rand());
@@ -72,9 +75,9 @@ $c_product_discount=$_POST['c_product_discount']??'';
         }else{
             $output['error']='無法移動營養成分表圖';
         }};
+    };
 
-
-// 判斷有無折扣自動輸入值
+// 判斷有無折扣自動輸入值(資料庫用)
     if( $c_product_discount == 100){
         $c_product_is_special_sale=0;
     }else{
@@ -87,19 +90,19 @@ $sql="INSERT INTO `classic_product`(`c_product_img_path`, `c_product_name`, `c_p
 
 $stmt=$pdo->prepare($sql);
 $stmt->execute([
-    $filenamePdImg.$extcpPdImg ??'',
+    ($cpPdImg['size']!==0)? $filenamePdImg.$extcpPdImg:'',
     $c_product_name,
     $c_product_category,
     $_POST['c_product_description']??'',
     $_POST['c_product_value']??'',
-    $c_product_discount,
+    ($c_product_discount=='')? '100':$c_product_discount,
     $_POST['c_product_print_time']??'',
     $_POST['c_product_weight']??'',
     $_POST['c_product_calories']??'',
     $_POST['c_product_materials_id']??'',
     $_POST['c_product_recommend_pids']??'',
-    $filenamecpNuImg.$extcpNuImg ??'',
-    $filenamecpNuTaImg.$extcpNuTaImg ??'',
+    ($cpNuImg['size']!==0)? $filenamecpNuImg.$extcpNuImg:'',
+    ($cpNuTaImg['size']!==0)? $filenamecpNuTaImg.$extcpNuTaImg:'',
     $c_product_is_special_sale,
 ]);   // 發送
 

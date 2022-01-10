@@ -23,9 +23,10 @@ if(empty($row)){
       .cp-form-area {
         margin: 30px auto;
       }
-      small{
-        color:red;
-      }
+      /* .cp-form-img {
+        display: flex;
+        align-items: center;
+      } */
       .cp-form-area img {
         width: 100%;
         object-fit: cover;
@@ -56,7 +57,6 @@ if(empty($row)){
       <div class="title my-4 upper">
         <h2>經典產品</h2>
       </div>
-      <p>有<small>*</small>的欄位為必填</p>
     </div>
     <!-- 主區 -->
   <form name="formDataAdd" onsubmit="sendData(); return false;">
@@ -65,7 +65,7 @@ if(empty($row)){
         <div class="row flex-lg-nowrap">
           <!-- 產品圖 -->
           <div class="cp-form-img mb-3 col-sm-12 col-lg-3 flex-lg-wrap">
-            <img class="mb-3" src="<?= ($row['c_product_img_path']!=='')?'./uploaded/img_classic_product/c_product_img_path/'.$row['c_product_img_path']:'' ?>" id="cpnDimg" />  
+            <img class="mb-3" src="./uploaded/img_classic_product/c_product_img_path/<?= htmlentities($row['c_product_img_path'])?>" id="cpnDimg" />  
             <label for="c_product_img_path" class="form-label" >產品圖片</label>
             <div name="c_product_img_path" runat="server">
               <input class="form-control" accept="image/*" type="file" id="uplimg" name="cpPdImg" />
@@ -76,12 +76,12 @@ if(empty($row)){
             <!-- 名稱類別 -->
             <div class="cp-form-np mb-3 ">
               <div class="mb-3">
-                <label for="c_product_name" class="form-label">產品名稱<small> *</small></label>
+                <label for="c_product_name" class="form-label">產品名稱</label>
                 <input type="text" class="form-control" placeholder="" id="c_product_name" name="c_product_name" required value="<?= htmlentities($row['c_product_name']) ?>"/>
                 <div class="form-text" ></div>
               </div>
               <div class="mb-3">
-                <label for="c_product_category" class="form-label">產品類別<small> *</small></label>
+                <label for="c_product_category" class="form-label">產品類別</label>
                 <select class="form-select" aria-label="Default select example" id="c_product_category" name="c_product_category" >
                   <option >請選擇類別</option>
                   <option value="sh" <?= ($row['c_product_category']=='sh') ? 'selected':''; ?>>壽司</option>
@@ -94,7 +94,7 @@ if(empty($row)){
   
             <!-- 產品敘述 -->
             <div class="cp-form-na mb-3">
-              <label for="c_product_description" class="form-label mb-3">產品敘述<small> *</small></label>
+              <label for="c_product_description" class="form-label mb-3">產品敘述</label>
               <textarea class="form-control" id="c_product_description" rows="4" id="c_product_description" name="c_product_description"> <?= $row['c_product_description'] ?></textarea>
               <div class="form-text"></div>
             </div>
@@ -108,7 +108,7 @@ if(empty($row)){
           <div class="container cp-form-area">
             <div class="row">
               <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
-                <label for="c_product_value" class="form-label">單價<small> *</small></label>
+                <label for="c_product_value" class="form-label">單價</label>
                 <input type="text" class="form-control" placeholder="" id="c_product_value" name="c_product_value" oninput = "value=value.replace(/[^\d]/g,'')" value="<?= htmlentities($row['c_product_value']) ?>"/>
                 <div class="form-text"></div>
               </div>
@@ -126,7 +126,7 @@ if(empty($row)){
               </div>
   
               <div class="mb-3 col-lg-4 col-md-6 col-sm-12">
-                <label for="c_product_weight" class="form-label">產品重量<small> *</small></label>
+                <label for="c_product_weight" class="form-label">產品重量</label>
                 <input type="text" class="form-control" placeholder="" id="c_product_weight" name="c_product_weight" oninput = "value=value.replace(/[^\d]/g,'')" value="<?= htmlentities($row['c_product_weight']) ?>"/>
                 <div class="form-text"></div>
               </div>
@@ -161,14 +161,14 @@ if(empty($row)){
                 <label for="c_product_nutrition_img_path" class="form-label" >營養成分六角分析圖</label>
                 <input class="form-control" accept="image/*"  type="file" id="cpNuImg" name="cpNuImg"/>
                 <br />
-                <img src="<?= ($row['c_product_nutrition_img_path']!=='') ? './uploaded/img_classic_product/c_product_nutrition_img_path/'.$row['c_product_nutrition_img_path']:'' ?>" id="cpnImg" />
+                <img src="./uploaded/img_classic_product/c_product_nutrition_img_path/<?= $row['c_product_nutrition_img_path'] ?>" id="cpnImg" />
               </div>
   
               <div class="mb-3 col-md-6 col-sm-12" runat="server">
                 <label for="c_product_nutrition_table_path" class="form-label">營養成分表圖</label>
                 <input class="form-control" type="file" accept="image/*" id="cpNuTaImg" name="cpNuTaImg"/>
                 <br />
-                <img src="<?= ($row['c_product_nutrition_table_path'] !=='') ? './uploaded/img_classic_product/c_product_nutrition_table_path/'.$row['c_product_nutrition_table_path'] :'' ?>" id="cpntableImg" />
+                <img src="./uploaded/img_classic_product/c_product_nutrition_table_path/<?= $row['c_product_nutrition_table_path'] ?>" id="cpntableImg" />
               </div>
             </div>
           </div>
@@ -251,6 +251,10 @@ if(empty($row)){
       isPass=false;
       c_product_discount.nextElementSibling.innerHTML='請輸入正確折數';
     }
+    if(!c_product_print_time.value && !value_rule.test(c_product_print_time.value)){
+      isPass=false;
+      c_product_print_time.nextElementSibling.innerHTML='請輸入印製時間';
+    }
     if(!c_product_weight.value && !value_rule.test(c_product_weight.value)){
       isPass=false;
       c_product_weight.nextElementSibling.innerHTML='請輸入產品重量';
@@ -259,7 +263,7 @@ if(empty($row)){
     if(isPass){
       const fd = new FormData(document.formDataAdd);
 
-      fetch('./adm_classic_product_edit_api.php',{
+      fetch('./adm_classic_product_edit_api-test.php',{
         method:'POST',
         body: fd,
       }).then(rt=>rt.json())
