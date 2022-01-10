@@ -87,14 +87,14 @@ $rows = $pdo->query($sql)->fetchAll();
                 <div class="container card-inside mt-3">
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
                         <!-- -- -->
-                        <button type="button" class="btn btn-outline-primary" onclick="inqtyMi(event)"><i class="fas fa-minus"></i></button>
+                        <button type="button" class="btn btn-outline-dark btn-dark" onclick="inqtyMi(event)"><i class="fas fa-minus text-light"></i></button>
                         <!-- 數量 -->
                         <input type="text" class="form-control qty" value="1" oninput = "value=value.replace(/[^\d]/g,'')" style="text-align: center;"></input>
                         <!-- ++ -->
-                        <button type="button" class="btn btn-outline-primary" onclick="inqtyPl(event)"><i class="fas fa-plus"></i></button>
+                        <button type="button" class="btn btn-outline-dark btn-dark" onclick="inqtyPl(event)"><i class="fas fa-plus text-light"></i></button>
                     </div>
 
-                    <button class="btn btn-primary my-3" onclick="sendData(event)">加入購物車</button>
+                    <button class="btn btn-dark my-3 btn-dark" onclick="sendData(event)">加入購物車</button>
 
                 </div>
 
@@ -138,17 +138,17 @@ $rows = $pdo->query($sql)->fetchAll();
         let amount = event.currentTarget.parentNode.querySelector('.qty').value;
         let value = event.currentTarget.parentNode.querySelector('.value').innerHTML;
         let category = event.currentTarget.parentNode.querySelector('.cat').innerHTML;
-                
+
         if(amount == 0 || amount == ''){
             console.log('數量不能為空或0');
             return false;
         }
-                
+
         fd.append('pid', pid);
         fd.append('amount', amount);
         fd.append('value', value);
         fd.append('category', category);
-              
+
         fetch('user_orders_insert_api.php', {                
             method: 'POST',            
             body: fd,
