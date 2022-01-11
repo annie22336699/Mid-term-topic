@@ -48,6 +48,10 @@ $changeCategory=[
         align-items: baseline;
         align-content: center;
     }
+    .c_product_nutrition_img_path img{
+        width: 100%;
+        object-fit: cover;
+    }
 </style>
 
 
@@ -86,9 +90,10 @@ $changeCategory=[
                         <th scope="col">單價</th>
                         <th scope="col">類別</th>
                         <th scope="col">印製時間</th>
-                        <th scope="col">產品敘述</th>
-                        <th scope="col">功能</i></th>
-                        <th scope="col"></i></th>
+                        <th scope="col" class="col-lg-5 col-mx-3">產品敘述</th>
+                        <th scope="col" class="col-1">功能</th>
+                        <th scope="col" class="col-1"></th>
+                        <th scope="col">詳細</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,10 +107,42 @@ $changeCategory=[
 
                             <td><?= $classic_product['c_product_description'] ?></td>
                             <td>
-                                <a href="javascript: delete_data(<?= "'".$classic_product['c_product_name'] ."'" ?>,<?= $classic_product['c_product_id'] ?>)"><i class="far fa-trash-alt"></i></a>
+                                <a href="javascript: delete_data(<?= "'".$classic_product['c_product_name'] ."'" ?>,<?= $classic_product['c_product_id'] ?>)"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i>刪除</button></a>
                             </td>
-                            <td><a href="adm_classic_product_edit.php?c_product_id=<?= $classic_product['c_product_id'] ?>"><i class="far fa-edit"></i></a></td>
+                            <td><a href="adm_classic_product_edit.php?c_product_id=<?= $classic_product['c_product_id'] ?>"><button type="button" class="btn btn-warning"><i class="far fa-edit"></i>修改</button></a>
+                            <td>
+                                <a href="javascript:;"><button type="button" class="btn btn-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample<?= $classic_product['c_product_id'] ?>" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chevron-down"></i></button></a>
+                            </td>
                         </tr>
+                        <tr>
+                                <td colspan="9" class="collapse multi-collapse" id="collapseExample<?= $classic_product['c_product_id'] ?>">
+                                    <div  class="collapse multi-collapse" id="collapseExample<?= $classic_product['c_product_id'] ?>">
+                                        <div class="card card-body row">
+                                            <div class="row flex-cullon m-2">
+                                                <div class="discount col-3">
+                                                    <p>折扣：<?= $classic_product['c_product_discount'] ?>%</p>
+                                                </div>
+                                                <div class="weight col-3">
+                                                    <p>產品重量：<?= $classic_product['c_product_weight'] ?> g</p>
+                                                </div>
+                                                <div class="calories col-3">
+                                                    <p>產品卡路里：<?= $classic_product['c_product_calories'] ?> cal</p>
+                                                </div>
+                                            </div>
+                                            <div class="six-imgarea flex-cullon row m-2">
+                                                <div class="c_product_nutrition_img_path col-6">
+                                                    <p>營養成分六角分析圖</p>
+                                                    <img src="<?= ($classic_product['c_product_nutrition_img_path']!=='')?'./uploaded/img_classic_product/c_product_nutrition_img_path/'.$classic_product['c_product_nutrition_img_path']:'' ?>" alt="">
+                                                </div>
+                                                <div class="c_product_nutrition_img_path col-6">
+                                                    <p>營養成分表圖</p>
+                                                    <img src="<?= ($classic_product['c_product_nutrition_table_path']!=='')?'./uploaded/img_classic_product/c_product_nutrition_table_path/'.$classic_product['c_product_nutrition_table_path']:'' ?>" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
