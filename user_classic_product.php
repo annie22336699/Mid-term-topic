@@ -51,9 +51,10 @@ $rows = $pdo->query($sql)->fetchAll();
 }
 </style>
 
-<?php include __DIR__ . '/parts/__navbar__user.php' ?>
+<?php /* include __DIR__ . '/parts/__navbar__user.php' */ ?>
 <div class="container my-4 classic_product">
     <div class="row">
+    
         <div class="title my-4">
             <h2>經典產品</h2>
         </div>
@@ -77,27 +78,33 @@ $rows = $pdo->query($sql)->fetchAll();
 
         <!-- 產品卡片 -->
         <?php foreach ($rows as $classic_product_card) : ?>
-        <div class="card m-2 cp-card" style="width: 18rem;">
-            <div class="cpimg">
-                <img <?= 'src="./uploaded/img_classic_product/c_product_img_path/'.$classic_product_card['c_product_img_path'].'"' ?> class="card-img-top" alt="">
-            </div>
-            <div class="card-body card-inside">
-                <h5 class="card-title col-8"><?= $classic_product_card['c_product_name'] ?></h5><h6 class="col-4 "><?= $classic_product_card['c_product_value'] ?> 元</h6>
-                
-                <div class="container card-inside mt-3">
-                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        <!-- -- -->
-                        <button type="button" class="btn btn-outline-dark btn-dark" onclick="inqtyMi(event)"><i class="fas fa-minus text-light"></i></button>
-                        <!-- 數量 -->
-                        <input type="text" class="form-control qty" value="1" oninput = "value=value.replace(/[^\d]/g,'')" style="text-align: center;"></input>
-                        <!-- ++ -->
-                        <button type="button" class="btn btn-outline-dark btn-dark" onclick="inqtyPl(event)"><i class="fas fa-plus text-light"></i></button>
+        <div class="col-12 col-md-6 col-lg-4 mb-3">
+            <div class="card m-2 cp-card" style="width: 18rem;">
+            
+                <div class="cpimg" style="transform: rotate(0);">
+                    <a href="./user_classic_product_detailed.php?c_product_id=<?= $classic_product_card['c_product_id'] ?>" class="stretched-link"></a>
+                    <img <?= 'src="./uploaded/img_classic_product/c_product_img_path/'.$classic_product_card['c_product_img_path'].'"' ?> class="card-img-top" alt="">
+                </div>
+                <div class="card-body card-inside ">
+                    <h5 class="card-title col-8"><?= $classic_product_card['c_product_name'] ?></h5><h6 class="col-4 "><?= $classic_product_card['c_product_value'] ?> 元</h6>
+                    <div class="container card-inside mt-3">
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                            <div class="pid" hidden><?=$classic_product_card['c_product_id']?></div>
+                            <div class="value" hidden><?=$classic_product_card['c_product_value']?></div>
+                            <div class="cat" hidden><?=$classic_product_card['c_product_category']?></div>
+                            <!-- -- -->
+                            <button type="button" class="btn btn-outline-dark btn-dark" onclick="inqtyMi(event)"><i class="fas fa-minus text-light"></i></button>
+                            <!-- 數量 -->
+                            <input type="text" class="form-control qty" value="1" oninput = "value=value.replace(/[^\d]/g,'')" style="text-align: center;"></input>
+                            <!-- ++ -->
+                            <button type="button" class="btn btn-outline-dark btn-dark" onclick="inqtyPl(event)"><i class="fas fa-plus text-light"></i></button>
+                        </div>
+
+                        <button class="btn btn-dark my-3" onclick="sendData(event)">加入購物車</button>
+                        
                     </div>
 
-                    <button class="btn btn-dark my-3 btn-dark" onclick="sendData(event)">加入購物車</button>
-
                 </div>
-
             </div>
         </div>
         <?php endforeach ?>
@@ -157,6 +164,7 @@ $rows = $pdo->query($sql)->fetchAll();
             console.log('obj', obj); 
             if (obj.success) {
                 alert('新增成功');
+                Location.href='./user_classic_product.php';
             } else {
                 alert(obj.error || '資料新增發生錯誤');
             }

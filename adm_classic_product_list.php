@@ -87,8 +87,8 @@ $changeCategory=[
                         <th scope="col">類別</th>
                         <th scope="col">印製時間</th>
                         <th scope="col">產品敘述</th>
-                        <th scope="col"><i class="far fa-trash-alt"></i></th>
-                        <th scope="col"><i class="far fa-edit"></i></th>
+                        <th scope="col">功能</i></th>
+                        <th scope="col"></i></th>
                     </tr>
                 </thead>
                 <tbody>
