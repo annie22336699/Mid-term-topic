@@ -164,7 +164,8 @@ $rows = $pdo->query($sql)->fetchAll();
             console.log('obj', obj); 
             if (obj.success) {
                 alert('新增成功');
-                Location.href='./user_classic_product.php';
+                location.reload();
+                
             } else {
                 alert(obj.error || '資料新增發生錯誤');
             }

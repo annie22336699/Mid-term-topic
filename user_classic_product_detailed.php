@@ -129,7 +129,7 @@ if (empty($row)) {
         .then(obj => {
             console.log('obj', obj); 
             if (obj.success) {
-                location.reload();
+                Location.href='./user_classic_product.php';
                 alert('新增成功');
             } else {
                 alert(obj.error || '資料新增發生錯誤');
