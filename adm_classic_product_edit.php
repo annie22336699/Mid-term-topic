@@ -138,7 +138,8 @@ if(empty($row)){
               </div>
             </div>
           </div>
-  
+
+<?php /*  暫時用不到
           <!-- 產品ID區 -->
           <div class="container cp-form-area">
             <div class="row">
@@ -153,6 +154,7 @@ if(empty($row)){
               </div>
             </div>
           </div>
+*/ ?>
   
           <!-- 圖片上傳 -->
           <div class="container cp-form-area">

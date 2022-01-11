@@ -123,7 +123,8 @@ $pageName = 'classic_product_insert';
               </div>
             </div>
           </div>
-  
+
+<?php /*  暫時用不到
           <!-- 產品ID區 -->
           <div class="container cp-form-area">
             <div class="row">
@@ -138,7 +139,7 @@ $pageName = 'classic_product_insert';
               </div>
             </div>
           </div>
-  
+*/ ?>
           <!-- 圖片上傳 -->
           <div class="container cp-form-area">
             <div class="row">
