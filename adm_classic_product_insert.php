@@ -219,7 +219,7 @@ $pageName = 'classic_product_insert';
 
     if(c_product_name.value.length<2){
       isPass=false;
-      c_product_name.nextElementSibling.innerHTML='請輸入產品名稱';
+      c_product_name.nextElementSibling.innerHTML='產品名稱過短，請輸入大於二個字的名稱';
     }
     if(c_product_category.value==='請選擇類別'){
       isPass=false;
